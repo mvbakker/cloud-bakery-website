@@ -1,0 +1,59 @@
+<!--
+  Enige layout-template van dit theme: de site is bewust single-page, dus
+  er zijn geen partials en geen section/taxonomy/term-templates. Nav en
+  footer staan hier inline; alleen het "main"-blok wordt ingevuld door
+  home.html met de homepage-content uit content/_index.<taal>.md.
+  Nieuwe subpagina toevoegen? Dan is een page.html-template nodig — die
+  is hier expres niet aanwezig omdat er nu geen losse pagina's bestaan.
+-->
+<!DOCTYPE html>
+<html lang="{{ .Language.Lang }}" dir="{{ or .Site.Language.Direction `ltr` }}">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ .Title | default .Site.Title }}</title>
+  <meta name="description" content="{{ .Description | default .Site.Params.description }}">
+  {{/* .Site.BaseURL i.p.v. relURL: Hugo herschrijft dit automatisch naar
+       http://localhost:<port>/ bij `hugo server` (behalve als een oude
+       serverinstantie draait van vóór een baseURL-wijziging — herstart
+       de server dan). */}}
+  <link rel="stylesheet" href="{{ .Site.BaseURL }}css/style.css">
+  <link rel="icon" href="{{ .Site.BaseURL }}favicon.svg" type="image/svg+xml">
+  <meta name="theme-color" content="#F5EFE6">
+</head>
+<body data-theme="light">
+  <nav class="navbar">
+    <div class="container">
+      <div class="nav-brand">
+        <a href="{{ .Site.BaseURL }}">
+          <img class="logo-light" src="{{ .Site.BaseURL }}images/logo-mark.svg" alt="" width="28" height="28">
+          <img class="logo-dark" src="{{ .Site.BaseURL }}images/logo-mark-dark.svg" alt="" width="28" height="28">
+          {{ .Site.Title }}
+        </a>
+      </div>
+      <div class="nav-controls">
+        {{ if eq .Language.Lang "nl" }}
+          <a href="{{ .Site.BaseURL }}en/" class="lang-switch">EN</a>
+        {{ else }}
+          <a href="{{ .Site.BaseURL }}" class="lang-switch">NL</a>
+        {{ end }}
+        {{/* Leeg element: js/theme-toggle.js vult het icoon en zet
+             body[data-theme] op basis van localStorage / OS-voorkeur. */}}
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme"></button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container">
+    {{ block "main" . }}{{ end }}
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; {{ now.Format "2006" }} Cloud Bakery — Michiel Bakker</p>
+    </div>
+  </footer>
+
+  <script src="{{ .Site.BaseURL }}js/theme-toggle.js"></script>
+</body>
+</html>

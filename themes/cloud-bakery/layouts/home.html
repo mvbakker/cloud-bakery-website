@@ -1,0 +1,11 @@
+{{/*
+  Vult het "main"-blok van baseof.html op de homepage. .Content is de
+  volledige gerenderde markdown uit content/_index.<taal>.md — inclusief
+  alle <section>-blokken (expertise, certificeringen, contact), want dit
+  is een single-page site zonder aparte contentpagina's.
+*/}}
+{{ define "main" }}
+  <div class="hero">
+    {{ .Content }}
+  </div>
+{{ end }}

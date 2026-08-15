@@ -1,0 +1,119 @@
+/* Cloud Bakery — Salie & Klei identity.
+   Theming werkt via CSS-variabelen op :root (licht) die worden
+   overschreven onder body[data-theme="dark"] (zie js/theme-toggle.js).
+   Alle kleur/afstand/font-waarden in de rest van dit bestand verwijzen
+   naar deze variabelen — pas het thema hier aan, niet verspreid. */
+@import url("https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Fragment+Mono:ital@0;1&display=swap");
+
+:root{
+  --color-bg:#F5EFE6;
+  --color-surface:#FBF7EF;
+  --color-sunken:#EDE5D8;
+  --color-text:#342E26;
+  --color-text-secondary:#6F695E;
+  --color-border:#DED6C8;
+  --color-accent:#5F7A5C;
+  --color-accent-hover:#465E44;
+  --color-accent-light:#E6EAE0;
+  --color-warm:#B85C38;
+  --color-warm-light:#F2E4DB;
+  --shadow-card:0 1px 2px rgba(52,46,38,.05),0 4px 16px rgba(52,46,38,.06);
+  --spacing-xs:0.5rem; --spacing-sm:1rem; --spacing-md:1.5rem; --spacing-lg:2rem; --spacing-xl:3rem;
+  --font-family:"Instrument Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --font-mono:"Fragment Mono","SF Mono",Menlo,monospace;
+  --font-size-base:17px; --font-size-sm:14px; --font-size-lg:18px; --font-size-xl:24px; --font-size-xxl:32px;
+  --border-radius:10px; --radius-lg:16px; --radius-pill:999px;
+}
+body[data-theme="dark"]{
+  --color-bg:#211F1B;
+  --color-surface:#2A2721;
+  --color-sunken:#1A1815;
+  --color-text:#EDE9DF;
+  --color-text-secondary:#9E9889;
+  --color-border:#413C33;
+  --color-accent:#8FAB89;
+  --color-accent-hover:#A3BC9D;
+  --color-accent-light:rgba(143,171,137,.16);
+  --color-warm:#D0764E;
+  --color-warm-light:rgba(208,118,78,.15);
+  --shadow-card:0 1px 2px rgba(0,0,0,.3),0 4px 16px rgba(0,0,0,.25);
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;font-size:var(--font-size-base)}
+body{font-family:var(--font-family);background-color:var(--color-bg);color:var(--color-text);line-height:1.6;transition:background-color .25s,color .25s}
+.container{max-width:1000px;margin:0 auto;padding:0 var(--spacing-lg)}
+
+/* Navigation */
+.navbar{background-color:color-mix(in srgb,var(--color-bg) 85%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--color-border);position:sticky;top:0;z-index:100;transition:border-color .25s}
+.navbar .container{display:flex;justify-content:space-between;align-items:center;padding-top:14px;padding-bottom:14px}
+.nav-brand a{display:inline-flex;align-items:center;gap:10px;font-size:var(--font-size-lg);font-weight:600;color:var(--color-text);text-decoration:none;letter-spacing:-0.02em;border-bottom:none}
+.nav-brand img{width:28px;height:28px}
+.nav-controls{display:flex;gap:12px;align-items:center}
+.theme-toggle{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:var(--radius-pill);border:1px solid var(--color-border);background:none;cursor:pointer;color:var(--color-text);transition:color .15s,border-color .15s}
+.theme-toggle:hover{color:var(--color-accent);border-color:var(--color-accent)}
+.theme-toggle svg{width:17px;height:17px}
+.lang-switch{color:var(--color-text-secondary);text-decoration:none;font-family:var(--font-mono);font-size:13px;text-transform:uppercase;letter-spacing:.05em;padding:7px 13px;border:1px solid var(--color-border);border-radius:var(--radius-pill);transition:background-color .15s,color .15s,border-color .15s}
+.lang-switch:hover{border-color:var(--color-accent);color:var(--color-accent);border-bottom:1px solid var(--color-accent)}
+
+/* Main content */
+main{min-height:calc(100vh - 200px);padding:var(--spacing-xl) 0}
+.hero{margin-bottom:var(--spacing-xl)}
+h1{font-size:clamp(2.5rem,5vw,3.5rem);font-weight:600;letter-spacing:-0.025em;margin-bottom:var(--spacing-md);line-height:1.1;max-width:720px}
+h2{font-size:var(--font-size-xxl);font-weight:600;letter-spacing:-0.015em;margin-top:var(--spacing-lg);margin-bottom:var(--spacing-md);line-height:1.25}
+h3{font-size:var(--font-size-lg);font-weight:600;margin-top:var(--spacing-md);margin-bottom:var(--spacing-sm)}
+p{margin-bottom:var(--spacing-md);color:var(--color-text-secondary);max-width:620px}
+a{color:var(--color-accent);text-decoration:none;font-weight:500;border-bottom:1px solid transparent;transition:border-color .15s}
+a:hover{border-bottom:1px solid var(--color-accent)}
+section{margin-bottom:var(--spacing-xl)}
+.kicker{font-family:var(--font-mono);font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--color-warm);padding-top:var(--spacing-md);margin-bottom:10px}
+
+/* Expertise */
+.expertise-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:var(--spacing-md);margin-top:var(--spacing-lg)}
+.expertise-card{padding:var(--spacing-lg);background-color:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-lg);box-shadow:var(--shadow-card)}
+.expertise-card h3{color:var(--color-text);margin-top:0}
+.expertise-card p{color:var(--color-text-secondary);font-size:var(--font-size-sm)}
+.expertise-card .index{font-family:var(--font-mono);font-size:13px;color:var(--color-accent);margin-bottom:14px}
+.expertise-card ul{margin:0 0 var(--spacing-md) 0;list-style:none;display:flex;flex-direction:column;gap:8px}
+.expertise-card li{margin-bottom:0;color:var(--color-text-secondary);font-size:var(--font-size-sm);padding-left:16px;position:relative}
+.expertise-card li::before{content:"";position:absolute;left:0;top:0.6em;width:5px;height:5px;border-radius:50%;background-color:var(--color-accent)}
+
+/* Certifications */
+.cert-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:var(--spacing-sm);margin-top:var(--spacing-lg)}
+.cert-item{display:flex;align-items:center;gap:14px;text-align:left;padding:12px 18px 12px 12px;border:1px solid var(--color-border);border-radius:var(--border-radius);background-color:var(--color-surface)}
+.cert-item .abbr{display:inline-flex;align-items:center;justify-content:center;min-width:46px;height:34px;padding:0 8px;border-radius:6px;background:var(--color-accent-light);color:var(--color-accent);font-family:var(--font-mono);font-size:13px}
+.cert-item .abbr img{width:20px;height:20px}
+.cert-item h4{font-size:var(--font-size-sm);font-weight:500;margin:0}
+.cert-item .issuer{font-size:13px;color:var(--color-text-secondary)}
+
+/* Buttons & contact */
+.btn,.contact-section a.btn{display:inline-flex;align-items:center;gap:8px;padding:11px 24px;background-color:var(--color-accent);color:var(--color-bg);border-radius:var(--radius-pill);font-weight:600;border-bottom:none;transition:background-color .15s}
+.btn:hover{background-color:var(--color-accent-hover);border-bottom:none}
+.contact-section{background-color:var(--color-accent-light);border:1px solid var(--color-border);padding:var(--spacing-xl) var(--spacing-lg);border-radius:var(--radius-lg);text-align:center}
+
+/* Footer */
+.footer{border-top:1px solid var(--color-border);background:none;padding:var(--spacing-lg) 0;margin-top:var(--spacing-xl)}
+.footer p{text-align:center;color:var(--color-text-secondary);margin:0;font-size:var(--font-size-sm)}
+
+/* Lists, code */
+ul,ol{margin-left:var(--spacing-lg);margin-bottom:var(--spacing-md)}
+li{margin-bottom:var(--spacing-xs)}
+code{background-color:var(--color-sunken);padding:2px 6px;border-radius:6px;font-family:var(--font-mono);font-size:.9em}
+::selection{background:var(--color-accent-light)}
+
+/* Logo per thema */
+.logo-dark{display:none}
+body[data-theme="dark"] .logo-light{display:none}
+body[data-theme="dark"] .logo-dark{display:inline}
+
+/* Responsive */
+@media (max-width:768px){
+  :root{--font-size-base:15px;--spacing-lg:1.5rem;--spacing-xl:2rem}
+  h2{font-size:var(--font-size-xl)}
+  .container{padding:0 var(--spacing-md)}
+  main{padding:var(--spacing-lg) 0}
+}
+@media (max-width:480px){
+  :root{--font-size-base:14px;--spacing-md:1rem;--spacing-lg:1.25rem}
+  .nav-controls{gap:var(--spacing-xs)}
+}

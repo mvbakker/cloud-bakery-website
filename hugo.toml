@@ -1,0 +1,25 @@
+# Single-page bilingual site: alle content zit in content/_index.nl.md
+# en content/_index.en.md (geen andere content types/secties).
+baseURL = 'https://cloudbakery.nl/'
+title = 'Cloud Bakery'
+theme = 'cloud-bakery'
+defaultContentLanguage = 'nl'
+defaultContentLanguageInSubdir = false
+
+# Geen blog/tags/categories en geen RSS-feed nodig voor een single-page
+# brochuresite — anders bouwt Hugo standaard lege tags/categories- en
+# feed-bestanden.
+disableKinds = ['taxonomy', 'term', 'RSS']
+
+[languages]
+[languages.nl]
+title = 'Cloud Bakery'
+weight = 1
+
+[languages.en]
+title = 'Cloud Bakery'
+weight = 2
+
+# Nodig om de HTML-blokken (kickers, cards, badges) in content/_index.*.md te renderen
+[markup.goldmark.renderer]
+unsafe = true
